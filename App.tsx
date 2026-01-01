@@ -1,5 +1,6 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Layout from './components/Layout';
 import AICareerGuide from './components/AICareerGuide';
 import PitchArena from './components/PitchArena';
@@ -416,8 +417,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <Layout activeTab={activeTab} onTabChange={handleTabChange} onJoinCommunity={() => { setAuthMode('register'); setIsCommunityModalOpen(true); }} isLoggedIn={isLoggedIn} onLogout={handleLogout}>
-      {renderContent()}
+    <>
+      <Layout activeTab={activeTab} onTabChange={handleTabChange} onJoinCommunity={() => { setAuthMode('register'); setIsCommunityModalOpen(true); }} isLoggedIn={isLoggedIn} onLogout={handleLogout}>
+        {renderContent()}
 
       {/* Simulated Email Notification Toast */}
       {simulatedEmail && (
@@ -515,6 +517,8 @@ const App: React.FC = () => {
         </div>
       )}
     </Layout>
+    <Analytics />
+    </>
   );
 };
 
